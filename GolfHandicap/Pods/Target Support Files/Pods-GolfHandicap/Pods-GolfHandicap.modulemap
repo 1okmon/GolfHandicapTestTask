@@ -1,0 +1,6 @@
+framework module Pods_GolfHandicap {
+  umbrella header "Pods-GolfHandicap-umbrella.h"
+
+  export *
+  module * { export * }
+}
