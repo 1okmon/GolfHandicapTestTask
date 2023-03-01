@@ -11,17 +11,20 @@ class ViewController: UIViewController, SpreadsheetViewDataSource, SpreadsheetVi
     private let spreadSheetView = SpreadsheetView()
     private var textField = UITextField()
     private var pickedElementIndexPath = IndexPath()
-    
+    var grossScope = Float()
+    let courceRating = Float()
+    let slopeRating = Float()
+    var total = [Int]()
     let holes = ["Hole", "#1", "#2", "#3", "#4", "#5", "#6", "#7", "#8", "#9" , "OUT"]
     let PAR = ["PAR", "4", "4", "5", "4", "3", "4", "3" , "4", "4", "35"]
-    let rowNames = ["Round 1", "Round 2", "Round 3", "Round 4", "Round 5"]
+    let rounds = ["Round 1", "Round 2", "Round 3", "Round 4", "Round 5"]
     let countOfTitleRows: Int = 2
     let countOfTitleCols: Int = 2
     var tableValues = [[Int]]()
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableValues = [[Int]](repeating: [Int](repeating: 0, count: holes.count - countOfTitleRows), count: rowNames.count)
-        print(tableValues)
+        tableValues = [[Int]](repeating: [Int](repeating: 0, count: holes.count - countOfTitleRows), count: rounds.count)
+        total = [Int](repeating: 0, count: rounds.count)
         spreadSheetView.gridStyle = .solid(width: 1, color: .black)
         spreadSheetView.register(MySpreadSheetCell.self, forCellWithReuseIdentifier: MySpreadSheetCell.identifier)
         spreadSheetView.delegate = self
@@ -35,12 +38,27 @@ class ViewController: UIViewController, SpreadsheetViewDataSource, SpreadsheetVi
     }
     
     func configurationTextField(textField: UITextField!) {
-            //Save reference to the UITextField
         self.textField.placeholder = "Some text";
         self.textField.keyboardType = .decimalPad
-        
     }
-
+    
+    func calculateGrossScoreIfTableComplytelyFilled() {
+        for i in (0..<tableValues.count) {
+            for j in (0..<tableValues[i].count) {
+                guard tableValues[i][j] != 0 else {
+                    return
+                }
+            }
+        }
+        
+        var sum = 0
+        for i in (0..<rounds.count) {
+            sum += total[i]
+        }
+        grossScope = Float(sum) / Float(rounds.count)
+        print(grossScope)
+    }
+    
     func openAlertView() {
         let alert = UIAlertController(title: "Введите количество ударов", message: "", preferredStyle: UIAlertController.Style.alert)
         alert.addTextField { (textField) in
@@ -49,11 +67,17 @@ class ViewController: UIViewController, SpreadsheetViewDataSource, SpreadsheetVi
         }
         alert.addAction(UIAlertAction(title: "Отменить", style: .cancel, handler:nil))
         alert.addAction(UIAlertAction(title: "Ок", style: .default, handler:{ (UIAlertAction) in
-            //if let cell = self.spreadSheetView.cellForItem(at: self.pickedElementIndexPath) as? MySpreadSheetCell {
-            self.tableValues[self.pickedElementIndexPath.row - self.countOfTitleRows] [self.pickedElementIndexPath.section - self.countOfTitleCols + 1] = NumberFormatter().number(from: alert.textFields?.first?.text ?? "0") as! Int
+            guard let text = alert.textFields?.first?.text else {
+                return
+            }
+            guard let enteredNumber = NumberFormatter().number(from: text) as? Int else {
+                return
+            }
+            self.tableValues[self.pickedElementIndexPath.row - self.countOfTitleRows] [self.pickedElementIndexPath.section - self.countOfTitleCols + 1] = enteredNumber
+            self.total[self.pickedElementIndexPath.row - self.countOfTitleRows] = enteredNumber
             self.spreadSheetView.reloadData();
-            //}
-            //print(alert.textFields?.first?.text)
+            self.calculateGrossScoreIfTableComplytelyFilled()
+            
         }))
         
         self.present(alert, animated: true, completion: nil)
@@ -63,7 +87,7 @@ class ViewController: UIViewController, SpreadsheetViewDataSource, SpreadsheetVi
         holes.count
     }
     func numberOfRows(in spreadsheetView: SpreadsheetView) -> Int {
-        rowNames.count + 2
+        rounds.count + countOfTitleRows
     }
     func spreadsheetView(_ spreadsheetView: SpreadsheetView, widthForColumn column: Int) -> CGFloat {
         100
@@ -95,35 +119,28 @@ class ViewController: UIViewController, SpreadsheetViewDataSource, SpreadsheetVi
             cell?.setup(with: PAR[indexPath.column])
             cell?.backgroundColor = .gray
         } else if indexPath.section == 0 {
-            cell?.setup(with: rowNames[indexPath.row - countOfTitleRows])
+            cell?.setup(with: rounds[indexPath.row - countOfTitleRows])
             cell?.backgroundColor = .systemYellow
         } else {
             var col = indexPath.section - countOfTitleCols + 1
             if indexPath.section <= holes.count - countOfTitleCols {
-                print(indexPath.section)
+                //print(indexPath.section)
                 let value = tableValues[indexPath.row - countOfTitleRows][col]
                 if value > 0 {
                     cell?.setup(with: String(value))
                 }
             } else {
-                var sum = 0
-                for val in tableValues[indexPath.row - countOfTitleRows] {
-                    sum += val
-                }
-                cell?.setup(with: String(sum))
+                cell?.setup(with: String(total[indexPath.row - countOfTitleRows]))
             }
         }
-
         return cell
-        
     }
-    
 }
 
 class MySpreadSheetCell: Cell {
     
     static let identifier = "MySpreadSheetCell"
-    private let label = UILabel()
+    public let label = UILabel()
     
     public func setup(with text: String) {
         label.text = text
