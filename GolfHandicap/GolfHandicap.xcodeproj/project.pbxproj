@@ -23,6 +23,7 @@
 		0EBC1E6A29B0A2C9004CF9D9 /* CourseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBC1E6929B0A2C9004CF9D9 /* CourseType.swift */; };
 		0EBC1E6C29B0A2EE004CF9D9 /* CourseInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBC1E6B29B0A2EE004CF9D9 /* CourseInfo.swift */; };
 		0EBC1E6E29B0A336004CF9D9 /* MySpreadSheetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBC1E6D29B0A335004CF9D9 /* MySpreadSheetCell.swift */; };
+		0EBC1E7629B0B2BF004CF9D9 /* CoursesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBC1E7529B0B2BF004CF9D9 /* CoursesViewController.swift */; };
 		0EFFC6DE29AF56D900D4731B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EFFC6DD29AF56D900D4731B /* AppDelegate.swift */; };
 		0EFFC6E029AF56D900D4731B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EFFC6DF29AF56D900D4731B /* SceneDelegate.swift */; };
 		0EFFC6E229AF56D900D4731B /* CourseEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EFFC6E129AF56D900D4731B /* CourseEditViewController.swift */; };
@@ -50,7 +51,7 @@
 		0EBC1E6929B0A2C9004CF9D9 /* CourseType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseType.swift; sourceTree = "<group>"; };
 		0EBC1E6B29B0A2EE004CF9D9 /* CourseInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseInfo.swift; sourceTree = "<group>"; };
 		0EBC1E6D29B0A335004CF9D9 /* MySpreadSheetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySpreadSheetCell.swift; sourceTree = "<group>"; };
-		0EBC1E7329B0B124004CF9D9 /* CoursesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoursesViewController.swift; path = GolfHandicap/CoursesViewController.swift; sourceTree = SOURCE_ROOT; };
+		0EBC1E7529B0B2BF004CF9D9 /* CoursesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesViewController.swift; sourceTree = "<group>"; };
 		0EFFC6DA29AF56D900D4731B /* GolfHandicap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GolfHandicap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EFFC6DD29AF56D900D4731B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0EFFC6DF29AF56D900D4731B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -203,7 +204,6 @@
 				0E7F87CB29B055AE0005AE38 /* CourseCollectionViewCell */,
 				0E7F87C329B0531A0005AE38 /* Services */,
 				0EFFC6DD29AF56D900D4731B /* AppDelegate.swift */,
-				0EBC1E7329B0B124004CF9D9 /* CoursesViewController.swift */,
 				0EFFC6DF29AF56D900D4731B /* SceneDelegate.swift */,
 				0EFFC6E129AF56D900D4731B /* CourseEditViewController.swift */,
 				0EFFC6F929AF579100D4731B /* NSObject */,
@@ -211,6 +211,7 @@
 				0EFFC6E629AF56DB00D4731B /* Assets.xcassets */,
 				0EFFC6E829AF56DB00D4731B /* LaunchScreen.storyboard */,
 				0EFFC6EB29AF56DB00D4731B /* Info.plist */,
+				0EBC1E7529B0B2BF004CF9D9 /* CoursesViewController.swift */,
 			);
 			path = GolfHandicap;
 			sourceTree = "<group>";
@@ -370,6 +371,7 @@
 				0EFFC6E229AF56D900D4731B /* CourseEditViewController.swift in Sources */,
 				0E7F87C729B0531A0005AE38 /* StorageManager.swift in Sources */,
 				0E7F87C829B0531A0005AE38 /* ServiceLocator.swift in Sources */,
+				0EBC1E7629B0B2BF004CF9D9 /* CoursesViewController.swift in Sources */,
 				0EBC1E6A29B0A2C9004CF9D9 /* CourseType.swift in Sources */,
 				0EBC1E6629B0A065004CF9D9 /* CoursesViewController+UICollectionViewDelegate.swift in Sources */,
 				0EFFC6DE29AF56D900D4731B /* AppDelegate.swift in Sources */,
