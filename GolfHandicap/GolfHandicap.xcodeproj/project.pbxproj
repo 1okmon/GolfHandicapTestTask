@@ -23,7 +23,6 @@
 		0EBC1E6A29B0A2C9004CF9D9 /* CourseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBC1E6929B0A2C9004CF9D9 /* CourseType.swift */; };
 		0EBC1E6C29B0A2EE004CF9D9 /* CourseInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBC1E6B29B0A2EE004CF9D9 /* CourseInfo.swift */; };
 		0EBC1E6E29B0A336004CF9D9 /* MySpreadSheetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBC1E6D29B0A335004CF9D9 /* MySpreadSheetCell.swift */; };
-		0EBC1E7429B0B124004CF9D9 /* CoursesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBC1E7329B0B124004CF9D9 /* CoursesViewController.swift */; };
 		0EFFC6DE29AF56D900D4731B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EFFC6DD29AF56D900D4731B /* AppDelegate.swift */; };
 		0EFFC6E029AF56D900D4731B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EFFC6DF29AF56D900D4731B /* SceneDelegate.swift */; };
 		0EFFC6E229AF56D900D4731B /* CourseEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EFFC6E129AF56D900D4731B /* CourseEditViewController.swift */; };
@@ -371,7 +370,6 @@
 				0EFFC6E229AF56D900D4731B /* CourseEditViewController.swift in Sources */,
 				0E7F87C729B0531A0005AE38 /* StorageManager.swift in Sources */,
 				0E7F87C829B0531A0005AE38 /* ServiceLocator.swift in Sources */,
-				0EBC1E7429B0B124004CF9D9 /* CoursesViewController.swift in Sources */,
 				0EBC1E6A29B0A2C9004CF9D9 /* CourseType.swift in Sources */,
 				0EBC1E6629B0A065004CF9D9 /* CoursesViewController+UICollectionViewDelegate.swift in Sources */,
 				0EFFC6DE29AF56D900D4731B /* AppDelegate.swift in Sources */,
