@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E4B936D29B087D900690D0F /* UserInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E4B936B29B087D900690D0F /* UserInfoTableViewCell.xib */; };
+		0E4B936E29B087D900690D0F /* UserInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4B936C29B087D900690D0F /* UserInfoTableViewCell.swift */; };
 		0E7F87BE29B0518C0005AE38 /* CoursesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7F87BD29B0518C0005AE38 /* CoursesViewController.swift */; };
 		0E7F87C229B051FA0005AE38 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7F87C129B051FA0005AE38 /* Course.swift */; };
 		0E7F87C729B0531A0005AE38 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7F87C529B0531A0005AE38 /* StorageManager.swift */; };
@@ -26,6 +28,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E4B936B29B087D900690D0F /* UserInfoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfoTableViewCell.xib; sourceTree = "<group>"; };
+		0E4B936C29B087D900690D0F /* UserInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoTableViewCell.swift; sourceTree = "<group>"; };
 		0E7F87BD29B0518C0005AE38 /* CoursesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CoursesViewController.swift; path = "/Users/1okmon/Desktop/Xcode projects/GolfTestTask/GolfHandicapTestTask/GolfHandicap/GolfHandicap/CoursesViewController.swift"; sourceTree = "<absolute>"; };
 		0E7F87C129B051FA0005AE38 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		0E7F87C529B0531A0005AE38 /* StorageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
@@ -60,6 +64,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E4B936829B058DE00690D0F /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				0E7F87C929B054400005AE38 /* CoursesViewController.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		0E4B936929B0876E00690D0F /* InfoTableView */ = {
+			isa = PBXGroup;
+			children = (
+				0E4B936A29B087D900690D0F /* UserInfoTableViewCell */,
+			);
+			path = InfoTableView;
+			sourceTree = "<group>";
+		};
+		0E4B936A29B087D900690D0F /* UserInfoTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				0E4B936B29B087D900690D0F /* UserInfoTableViewCell.xib */,
+				0E4B936C29B087D900690D0F /* UserInfoTableViewCell.swift */,
+			);
+			path = UserInfoTableViewCell;
+			sourceTree = "<group>";
+		};
 		0E7F87C329B0531A0005AE38 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -93,6 +122,7 @@
 				0EFFC6DB29AF56D900D4731B /* Products */,
 				1943CD8920554B542825782E /* Pods */,
 				46177D06E49863F68A993D37 /* Frameworks */,
+				0E4B936829B058DE00690D0F /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -107,7 +137,7 @@
 		0EFFC6DC29AF56D900D4731B /* GolfHandicap */ = {
 			isa = PBXGroup;
 			children = (
-				0E7F87BD29B0518C0005AE38 /* CoursesViewController.swift */,
+				0E4B936929B0876E00690D0F /* InfoTableView */,
 				0E7F87CB29B055AE0005AE38 /* CourseCollectionViewCell */,
 				0E7F87C329B0531A0005AE38 /* Services */,
 				0E7F87BD29B0518C0005AE38 /* CoursesViewController.swift */,
@@ -212,6 +242,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E4B936D29B087D900690D0F /* UserInfoTableViewCell.xib in Resources */,
 				0E7F87CF29B055AE0005AE38 /* CourseCollectionViewCell.xib in Resources */,
 				0EFFC6EA29AF56DB00D4731B /* LaunchScreen.storyboard in Resources */,
 				0EFFC6E729AF56DB00D4731B /* Assets.xcassets in Resources */,
@@ -268,6 +299,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E4B936E29B087D900690D0F /* UserInfoTableViewCell.swift in Sources */,
 				0E7F87C229B051FA0005AE38 /* Course.swift in Sources */,
 				0EFFC6FB29AF579100D4731B /* NSObject+ClassName.swift in Sources */,
 				0E7F87D129B057710005AE38 /* MainNavigator.swift in Sources */,

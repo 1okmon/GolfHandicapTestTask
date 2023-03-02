@@ -13,6 +13,8 @@ class CoursesViewController: UIViewController {
     var storageManager = ServiceLocator.courseStorageManager()
     var gameType: GameType = .min
     var infoView = UIView()
+    let infoTitles = ["Average Diff Score", "Handicap",]
+    let infoValues = [1.2, 1.7]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +53,28 @@ class CoursesViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = barButton
     }
     
+    func configureInfoView() {
+        //let label = UILabel()
+        
+        infoView.frame = CGRect.init(x: 30, y: 100, width: 200, height: 300)
+        infoView.backgroundColor = .white
+        infoView.dropShadow(radius: CGFloat(10))
+        
+        let tableView: UITableView = UITableView(frame: CGRect(x: 20, y: 20, width: infoView.frame.width - 40, height: infoView.frame.height - 40))
+        //tableView.backgroundColor = .blue
+        let nibInfoCell = UINib(nibName: UserInfoTableViewCell.className, bundle: nil)
+        tableView.register(nibInfoCell, forCellReuseIdentifier: UserInfoTableViewCell.className)
+        //tableView.register(UserInfoTableViewCell.self, forCellReuseIdentifier: UserInfoTableViewCell.className)
+        tableView.dataSource = self
+        tableView.delegate = self
+        
+        infoView.addSubview(tableView)
+        infoView.isHidden = true
+        view.addSubview(infoView)
+    }
+    
     func addLeftButtonToNavigationBar() {
+        configureInfoView()
         infoView.frame = CGRect.init(x: 30, y: 100, width: 200, height: 300)
         infoView.backgroundColor = .white
         infoView.dropShadow(radius: CGFloat(10))
@@ -201,4 +224,27 @@ extension UIView {
         layer.shouldRasterize = true
         layer.rasterizationScale = scale ? UIScreen.main.scale : 1
       }
+}
+
+
+extension CoursesViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: UserInfoTableViewCell.className) as? UserInfoTableViewCell else {
+            return UITableViewCell()
+        }
+        //cell.setupProperties()
+        cell.nameOfInfoLable.text = infoTitles[indexPath.row]
+        cell.infoLable.text = String(infoValues[indexPath.row])
+        cell.isUserInteractionEnabled = false
+        return cell
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        1
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        infoTitles.count
+    }
+
 }
