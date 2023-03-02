@@ -17,4 +17,6 @@ struct Course: Codable {
     var PAR: [String]
     var total: [Int]
     var date: Date
+    var courseRating: Float
+    var slopeRating: Float
 }

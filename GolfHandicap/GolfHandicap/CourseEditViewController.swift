@@ -12,7 +12,6 @@ class CourseEditViewController: UIViewController, SpreadsheetViewDataSource, Spr
     private var textField = UITextField()
     private var pickedElementIndexPath = IndexPath()
     let storageManager = ServiceLocator.courseStorageManager()
-    //var courseID = String()
     var courseFromUserDefaults: Course?
     var courseName = String()
     var gameMode: GameType = .normal
@@ -30,6 +29,8 @@ class CourseEditViewController: UIViewController, SpreadsheetViewDataSource, Spr
         setup()
         view.addSubview(spreadSheetView)
     }
+    
+    
     
     func loadCourse() {
         guard let courseFromUserDefaults = courseFromUserDefaults  else {
@@ -49,7 +50,8 @@ class CourseEditViewController: UIViewController, SpreadsheetViewDataSource, Spr
     
     func saveCourse() {
         let courseId = courseFromUserDefaults?.id ?? UUID().uuidString
-        let course = Course(id: courseId, title: courseName, diffScore: self.course.diffScore, gameMode: gameMode, tableValues: self.course.tableValues, holes: self.course.holes, rounds: self.course.rounds, PAR: self.course.PAR, total: self.course.total, date: Date())
+        let course = Course(id: courseId, title: courseName, diffScore: self.course.diffScore, gameMode: gameMode, tableValues: self.course.tableValues, holes: self.course.holes, rounds: self.course.rounds, PAR: self.course.PAR, total: self.course.total, date: Date(), courseRating: course.courseRating, slopeRating: course.slopeRating)
+        print("sadadada")
         storageManager.saveCourseToUserDefaults(course: course, key: courseId, new: courseFromUserDefaults == nil)
     }
     
