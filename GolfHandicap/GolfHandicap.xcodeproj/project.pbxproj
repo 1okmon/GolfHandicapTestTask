@@ -10,7 +10,6 @@
 		0E7F87C229B051FA0005AE38 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7F87C129B051FA0005AE38 /* Course.swift */; };
 		0E7F87C729B0531A0005AE38 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7F87C529B0531A0005AE38 /* StorageManager.swift */; };
 		0E7F87C829B0531A0005AE38 /* ServiceLocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7F87C629B0531A0005AE38 /* ServiceLocator.swift */; };
-		0E7F87CA29B054400005AE38 /* CoursesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7F87C929B054400005AE38 /* CoursesViewController.swift */; };
 		0E7F87CE29B055AE0005AE38 /* CourseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7F87CC29B055AE0005AE38 /* CourseCollectionViewCell.swift */; };
 		0E7F87CF29B055AE0005AE38 /* CourseCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E7F87CD29B055AE0005AE38 /* CourseCollectionViewCell.xib */; };
 		0E7F87D129B057710005AE38 /* MainNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7F87D029B057710005AE38 /* MainNavigator.swift */; };
@@ -376,7 +375,6 @@
 				0EBC1E6629B0A065004CF9D9 /* CoursesViewController+UICollectionViewDelegate.swift in Sources */,
 				0EFFC6DE29AF56D900D4731B /* AppDelegate.swift in Sources */,
 				0EFFC6E029AF56D900D4731B /* SceneDelegate.swift in Sources */,
-				0E7F87CA29B054400005AE38 /* CoursesViewController.swift in Sources */,
 				0EBC1E6C29B0A2EE004CF9D9 /* CourseInfo.swift in Sources */,
 				0EBC1E6229B09FA9004CF9D9 /* UIView+dropShadow.swift in Sources */,
 			);

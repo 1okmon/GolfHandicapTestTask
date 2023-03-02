@@ -37,6 +37,22 @@ class CoursesViewController: UIViewController {
         var numOfCountedGrossScores = 0
         var sumDiffScore:Float = 0
         for course in courses {
+            
+            var isEmptyExist = false
+            for i in (0..<course.tableValues.count) {
+                for j in (0..<course.tableValues[i].count) {
+                    if course.tableValues[i][j] <= 0 {
+                        isEmptyExist = true
+                        break
+                    }
+                }
+                if isEmptyExist {
+                    break
+                }
+            }
+            if isEmptyExist {
+                continue
+            }
             for val in course.total {
                 numOfCountedGrossScores += 1
                 sumDiffScore += (Float (val) - course.courseRating) * 113 / course.slopeRating
