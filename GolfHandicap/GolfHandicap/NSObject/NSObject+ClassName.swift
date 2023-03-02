@@ -1,8 +1,8 @@
 //
 //  NSObject+ClassName.swift
-//  Note
+//  GolfHandicap
 //
-//  Created by 1okmon on 01.02.2023.
+//  Created by 1okmon on 01.03.2023.
 //
 import Foundation
 extension NSObject {

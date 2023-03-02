@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="CourseCollectionViewCell" customModule="GolfHandicap" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="495" height="397"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="495" height="397"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tel-gF-Tgh">
+                        <rect key="frame" x="0.0" y="0.0" width="495" height="397"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kbt-KN-qsc">
+                                <rect key="frame" x="10" y="10" width="475" height="200"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rSb-hK-CgV">
+                                        <rect key="frame" x="10" y="10" width="455" height="180"/>
+                                        <fontDescription key="fontDescription" name="Didot" family="Didot" pointSize="22"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="rSb-hK-CgV" firstAttribute="top" secondItem="Kbt-KN-qsc" secondAttribute="top" constant="10" id="azR-B4-ETm"/>
+                                    <constraint firstItem="rSb-hK-CgV" firstAttribute="leading" secondItem="Kbt-KN-qsc" secondAttribute="leading" constant="10" id="dNj-92-guj"/>
+                                    <constraint firstAttribute="trailing" secondItem="rSb-hK-CgV" secondAttribute="trailing" constant="10" id="iBG-iK-YxU"/>
+                                    <constraint firstAttribute="bottom" secondItem="rSb-hK-CgV" secondAttribute="bottom" constant="10" id="oLU-Jv-UFQ"/>
+                                    <constraint firstAttribute="height" constant="200" id="wHW-aY-htQ"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cWr-m9-LHk">
+                                <rect key="frame" x="0.0" y="214" width="495" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="17" id="vov-sM-aXL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Didot" family="Didot" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Rp-H9-yEH">
+                                <rect key="frame" x="8" y="232" width="479" height="12"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="12" id="c2n-Zp-qWg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Didot" family="Didot" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="2Rp-H9-yEH" firstAttribute="top" secondItem="cWr-m9-LHk" secondAttribute="bottom" constant="1" id="04H-Ki-6Mw"/>
+                            <constraint firstAttribute="trailing" secondItem="2Rp-H9-yEH" secondAttribute="trailing" constant="8" id="DOH-nf-tZS"/>
+                            <constraint firstItem="cWr-m9-LHk" firstAttribute="leading" secondItem="Tel-gF-Tgh" secondAttribute="leading" id="Pvw-ga-j8Y"/>
+                            <constraint firstItem="2Rp-H9-yEH" firstAttribute="leading" secondItem="Tel-gF-Tgh" secondAttribute="leading" constant="8" id="Pwk-mv-BjU"/>
+                            <constraint firstItem="cWr-m9-LHk" firstAttribute="top" secondItem="Kbt-KN-qsc" secondAttribute="bottom" constant="4" id="XlU-fT-V5Q"/>
+                            <constraint firstItem="Kbt-KN-qsc" firstAttribute="top" secondItem="Tel-gF-Tgh" secondAttribute="top" constant="10" id="gm5-NF-CxO"/>
+                            <constraint firstAttribute="trailing" secondItem="cWr-m9-LHk" secondAttribute="trailing" id="r9Z-F9-omT"/>
+                            <constraint firstAttribute="trailing" secondItem="Kbt-KN-qsc" secondAttribute="trailing" constant="10" id="x7K-6r-eub"/>
+                            <constraint firstItem="Kbt-KN-qsc" firstAttribute="leading" secondItem="Tel-gF-Tgh" secondAttribute="leading" constant="10" id="yKk-Eu-OUi"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Tel-gF-Tgh" secondAttribute="trailing" id="Dg1-0l-Phn"/>
+                <constraint firstAttribute="bottom" secondItem="Tel-gF-Tgh" secondAttribute="bottom" id="QkP-he-Afh"/>
+                <constraint firstItem="Tel-gF-Tgh" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="mKK-bH-C3x"/>
+                <constraint firstItem="Tel-gF-Tgh" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="wrf-Qx-Gby"/>
+            </constraints>
+            <size key="customSize" width="495" height="397"/>
+            <connections>
+                <outlet property="BodyLabel" destination="rSb-hK-CgV" id="mjV-fr-hl7"/>
+                <outlet property="BodyTextView" destination="Kbt-KN-qsc" id="3sc-Nl-RKq"/>
+                <outlet property="DateLabel" destination="2Rp-H9-yEH" id="xgf-oa-RgT"/>
+                <outlet property="TitleLabel" destination="cWr-m9-LHk" id="Cza-Xb-FOf"/>
+            </connections>
+            <point key="canvasLocation" x="496.37681159420293" y="-7.03125"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -7,24 +7,48 @@
 import SpreadsheetView
 import UIKit
 
-class ViewController: UIViewController, SpreadsheetViewDataSource, SpreadsheetViewDelegate {
+class CourseEditViewController: UIViewController, SpreadsheetViewDataSource, SpreadsheetViewDelegate {
     private let spreadSheetView = SpreadsheetView()
     private var textField = UITextField()
     private var pickedElementIndexPath = IndexPath()
-    var grossScope = Float()
+    let storageManager = ServiceLocator.courseStorageManager()
+    //var courseID = String()
+    var courseFromUserDefaults: Course?
+    var courseName = String()
     var gameMode: GameType = .normal
     let infoLabel = UILabel()
-    var course: Cource! = nil
+    var course: CourseInfo! = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        course = Cource(countOfHoles: gameMode)
+        loadCourse()
+        addRightButtonToNavigationBar()
         spreadSheetView.gridStyle = .solid(width: 1, color: .black)
         spreadSheetView.register(MySpreadSheetCell.self, forCellWithReuseIdentifier: MySpreadSheetCell.identifier)
         spreadSheetView.delegate = self
         spreadSheetView.dataSource = self
         setup()
         view.addSubview(spreadSheetView)
+    }
+    
+    func loadCourse() {
+        guard let courseFromUserDefaults = courseFromUserDefaults  else {
+            course = CourseInfo(countOfHoles: gameMode)
+            return
+        }
+        course = CourseInfo(holes: courseFromUserDefaults.holes, PAR: courseFromUserDefaults.PAR, rounds: courseFromUserDefaults.rounds, tableValues: courseFromUserDefaults.tableValues, total: courseFromUserDefaults.total)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        saveCourse()
+        courseFromUserDefaults = nil
+        course = nil
+    }
+    
+    func saveCourse() {
+        let courseId = courseFromUserDefaults?.id ?? UUID().uuidString
+        let course = Course(id: courseId, title: courseName, diffScore: self.course.grossScore, gameMode: gameMode, tableValues: self.course.tableValues, holes: self.course.holes, rounds: self.course.rounds, PAR: self.course.PAR, total: self.course.total, date: Date())
+        storageManager.saveCourseToUserDefaults(course: course, key: courseId, new: courseFromUserDefaults == nil)
     }
     
     func setup() {
@@ -40,26 +64,49 @@ class ViewController: UIViewController, SpreadsheetViewDataSource, SpreadsheetVi
         spreadSheetView.frame = CGRect(x: 0, y: 100, width: view.frame.size.width, height: view.frame.size.height)
     }
     
+    func addRightButtonToNavigationBar() {
+        let addButton: UIBarButtonItem = UIBarButtonItem(title: "", style: .done, target: self, action: #selector(deleteCourse))
+        let infoImage = UIImage(systemName: "trash")
+        addButton.setBackgroundImage(infoImage, for: .normal, barMetrics: .default)
+        self.navigationItem.rightBarButtonItem = addButton
+    }
+    
+    @objc func deleteCourse(sender: AnyObject) {
+        let alert = UIAlertController(title: "Удалить заметку?", message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Удалить", style: .default, handler: { action in
+            if let courseFromUserDefaults = self.courseFromUserDefaults {
+                self.storageManager.removeCourseFromUserDefaults(key: courseFromUserDefaults.id)
+            }
+            if let navController = self.navigationController {
+                navController.popToRootViewController(animated: true)
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+    }
+    
     func configurationTextField(textField: UITextField!) {
         self.textField.placeholder = "Some text";
         self.textField.keyboardType = .decimalPad
     }
     
     func calculateGrossScoreIfTableComplytelyFilled() {
-        for i in (0..<course.tableValues.count) {
-            for j in (0..<course.tableValues[i].count) {
-                guard course.tableValues[i][j] != 0 else {
-                    return
-                }
-            }
-        }
+//        for i in (0..<course.tableValues.count) {
+//            for j in (0..<course.tableValues[i].count) {
+//                guard course.tableValues[i][j] != 0 else {
+//                    return
+//                }
+//            }
+//        }
         
         var sum = 0
         for i in (0..<course.rounds.count) {
             sum += course.total[i]
         }
-        grossScope = Float(sum) / Float(course.rounds.count)
-        print(grossScope)
+        course.grossScore = Float(sum) / Float(course.rounds.count)
+        let handicape =  (course.grossScore - course.courseRating) * 113 / course.slopeRating
+        infoLabel.text =  "Youre current Score Differntiantial: " + String(handicape)
+        print(course.grossScore)
     }
     
     func openAlertView(currentValue: Int) {
@@ -164,16 +211,19 @@ class MySpreadSheetCell: Cell {
     }
 }
 
-class Cource {
+class CourseInfo {
     let holes: [String]!
     let PAR: [String]!
+    var grossScore = Float()
     var rounds = ["Round 1", "Round 2", "Round 3", "Round 4", "Round 5"]
     var tableValues = [[Int]]()
     var total = [Int]()
     let countOfTitleRows: Int = 2
     let countOfTitleCols: Int = 2
-    let courceRating = Float()
-    let slopeRating = Float()
+    
+    //MARK: CR and SR is hardcoded now, but should be taken from database or parsed from Exel file or etc.
+    let courseRating: Float = 75.2
+    let slopeRating: Float = 140
     
     init(countOfHoles: GameType) {
         total = [Int](repeating: 0, count: rounds.count)
@@ -189,9 +239,17 @@ class Cource {
             tableValues = [[Int]](repeating: [Int](repeating: 0, count: holes.count - countOfTitleCols), count: rounds.count)
         }
     }
+    
+    init(holes: [String], PAR: [String], rounds: [String], tableValues: [[Int]], total: [Int]) {
+        self.holes = holes
+        self.PAR = PAR
+        self.rounds = rounds
+        self.tableValues = tableValues
+        self.total = total
+    }
 }
 
-enum GameType {
+enum GameType: Codable {
     case min
     case normal
 }
