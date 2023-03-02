@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E4BD52029B0BA730019B653 /* CoursesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4BD51F29B0BA730019B653 /* CoursesViewController.swift */; };
+		0E4BD52229B0BA940019B653 /* CourseEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4BD52129B0BA940019B653 /* CourseEditViewController.swift */; };
 		0E7F87C229B051FA0005AE38 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7F87C129B051FA0005AE38 /* Course.swift */; };
 		0E7F87C729B0531A0005AE38 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7F87C529B0531A0005AE38 /* StorageManager.swift */; };
 		0E7F87C829B0531A0005AE38 /* ServiceLocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7F87C629B0531A0005AE38 /* ServiceLocator.swift */; };
@@ -22,10 +24,8 @@
 		0EBC1E6A29B0A2C9004CF9D9 /* CourseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBC1E6929B0A2C9004CF9D9 /* CourseType.swift */; };
 		0EBC1E6C29B0A2EE004CF9D9 /* CourseInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBC1E6B29B0A2EE004CF9D9 /* CourseInfo.swift */; };
 		0EBC1E6E29B0A336004CF9D9 /* MySpreadSheetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBC1E6D29B0A335004CF9D9 /* MySpreadSheetCell.swift */; };
-		0EBC1E7629B0B2BF004CF9D9 /* CoursesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBC1E7529B0B2BF004CF9D9 /* CoursesViewController.swift */; };
 		0EFFC6DE29AF56D900D4731B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EFFC6DD29AF56D900D4731B /* AppDelegate.swift */; };
 		0EFFC6E029AF56D900D4731B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EFFC6DF29AF56D900D4731B /* SceneDelegate.swift */; };
-		0EFFC6E229AF56D900D4731B /* CourseEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EFFC6E129AF56D900D4731B /* CourseEditViewController.swift */; };
 		0EFFC6E529AF56D900D4731B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EFFC6E329AF56D900D4731B /* Main.storyboard */; };
 		0EFFC6E729AF56DB00D4731B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0EFFC6E629AF56DB00D4731B /* Assets.xcassets */; };
 		0EFFC6EA29AF56DB00D4731B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EFFC6E829AF56DB00D4731B /* LaunchScreen.storyboard */; };
@@ -34,10 +34,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E4BD51F29B0BA730019B653 /* CoursesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoursesViewController.swift; sourceTree = "<group>"; };
+		0E4BD52129B0BA940019B653 /* CourseEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseEditViewController.swift; sourceTree = "<group>"; };
 		0E7F87C129B051FA0005AE38 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		0E7F87C529B0531A0005AE38 /* StorageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		0E7F87C629B0531A0005AE38 /* ServiceLocator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceLocator.swift; sourceTree = "<group>"; };
-		0E7F87C929B054400005AE38 /* CoursesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CoursesViewController.swift; path = "/Users/1okmon/Desktop/Xcode projects/GolfTestTask/GolfHandicapTestTask/GolfHandicap/GolfHandicap/CoursesViewController.swift"; sourceTree = "<absolute>"; };
 		0E7F87CC29B055AE0005AE38 /* CourseCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseCollectionViewCell.swift; sourceTree = "<group>"; };
 		0E7F87CD29B055AE0005AE38 /* CourseCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CourseCollectionViewCell.xib; sourceTree = "<group>"; };
 		0E7F87D029B057710005AE38 /* MainNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigator.swift; sourceTree = "<group>"; };
@@ -50,11 +51,9 @@
 		0EBC1E6929B0A2C9004CF9D9 /* CourseType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseType.swift; sourceTree = "<group>"; };
 		0EBC1E6B29B0A2EE004CF9D9 /* CourseInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseInfo.swift; sourceTree = "<group>"; };
 		0EBC1E6D29B0A335004CF9D9 /* MySpreadSheetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySpreadSheetCell.swift; sourceTree = "<group>"; };
-		0EBC1E7529B0B2BF004CF9D9 /* CoursesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesViewController.swift; sourceTree = "<group>"; };
 		0EFFC6DA29AF56D900D4731B /* GolfHandicap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GolfHandicap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EFFC6DD29AF56D900D4731B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0EFFC6DF29AF56D900D4731B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		0EFFC6E129AF56D900D4731B /* CourseEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseEditViewController.swift; sourceTree = "<group>"; };
 		0EFFC6E429AF56D900D4731B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0EFFC6E629AF56DB00D4731B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0EFFC6E929AF56DB00D4731B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -80,7 +79,6 @@
 		0E4B936829B058DE00690D0F /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
-				0E7F87C929B054400005AE38 /* CoursesViewController.swift */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -196,6 +194,8 @@
 		0EFFC6DC29AF56D900D4731B /* GolfHandicap */ = {
 			isa = PBXGroup;
 			children = (
+				0E4BD52129B0BA940019B653 /* CourseEditViewController.swift */,
+				0E4BD51F29B0BA730019B653 /* CoursesViewController.swift */,
 				0EBC1E6029B09F19004CF9D9 /* Extensions */,
 				0EBC1E5C29B09EE9004CF9D9 /* Additions */,
 				0EBC1E5629B09CC2004CF9D9 /* UserInfoTableViewCell */,
@@ -204,13 +204,11 @@
 				0E7F87C329B0531A0005AE38 /* Services */,
 				0EFFC6DD29AF56D900D4731B /* AppDelegate.swift */,
 				0EFFC6DF29AF56D900D4731B /* SceneDelegate.swift */,
-				0EFFC6E129AF56D900D4731B /* CourseEditViewController.swift */,
 				0EFFC6F929AF579100D4731B /* NSObject */,
 				0EFFC6E329AF56D900D4731B /* Main.storyboard */,
 				0EFFC6E629AF56DB00D4731B /* Assets.xcassets */,
 				0EFFC6E829AF56DB00D4731B /* LaunchScreen.storyboard */,
 				0EFFC6EB29AF56DB00D4731B /* Info.plist */,
-				0EBC1E7529B0B2BF004CF9D9 /* CoursesViewController.swift */,
 			);
 			path = GolfHandicap;
 			sourceTree = "<group>";
@@ -360,17 +358,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				0EBC1E5A29B09CC2004CF9D9 /* UserInfoTableViewCell.swift in Sources */,
+				0E4BD52229B0BA940019B653 /* CourseEditViewController.swift in Sources */,
 				0E7F87C229B051FA0005AE38 /* Course.swift in Sources */,
 				0EBC1E6829B0A11C004CF9D9 /* Date+get.swift in Sources */,
 				0EFFC6FB29AF579100D4731B /* NSObject+ClassName.swift in Sources */,
+				0E4BD52029B0BA730019B653 /* CoursesViewController.swift in Sources */,
 				0E7F87D129B057710005AE38 /* MainNavigator.swift in Sources */,
 				0EBC1E6429B09FE6004CF9D9 /* CoursesViewController+UITableViewDelegate.swift in Sources */,
 				0EBC1E6E29B0A336004CF9D9 /* MySpreadSheetCell.swift in Sources */,
 				0E7F87CE29B055AE0005AE38 /* CourseCollectionViewCell.swift in Sources */,
-				0EFFC6E229AF56D900D4731B /* CourseEditViewController.swift in Sources */,
 				0E7F87C729B0531A0005AE38 /* StorageManager.swift in Sources */,
 				0E7F87C829B0531A0005AE38 /* ServiceLocator.swift in Sources */,
-				0EBC1E7629B0B2BF004CF9D9 /* CoursesViewController.swift in Sources */,
 				0EBC1E6A29B0A2C9004CF9D9 /* CourseType.swift in Sources */,
 				0EBC1E6629B0A065004CF9D9 /* CoursesViewController+UICollectionViewDelegate.swift in Sources */,
 				0EFFC6DE29AF56D900D4731B /* AppDelegate.swift in Sources */,
