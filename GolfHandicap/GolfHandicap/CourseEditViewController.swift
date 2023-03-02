@@ -36,10 +36,12 @@ class CourseEditViewController: UIViewController, SpreadsheetViewDataSource, Spr
             course = CourseInfo(countOfHoles: gameMode)
             return
         }
-        course = CourseInfo(holes: courseFromUserDefaults.holes, PAR: courseFromUserDefaults.PAR, rounds: courseFromUserDefaults.rounds, tableValues: courseFromUserDefaults.tableValues, total: courseFromUserDefaults.total)
+        course = CourseInfo(holes: courseFromUserDefaults.holes, PAR: courseFromUserDefaults.PAR, rounds: courseFromUserDefaults.rounds, tableValues: courseFromUserDefaults.tableValues, total: courseFromUserDefaults.total, grossScore: courseFromUserDefaults.diffScore)
+        calculateGrossScoreIfTableComplytelyFilled()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        calculateGrossScoreIfTableComplytelyFilled()
         saveCourse()
         courseFromUserDefaults = nil
         course = nil
@@ -47,7 +49,7 @@ class CourseEditViewController: UIViewController, SpreadsheetViewDataSource, Spr
     
     func saveCourse() {
         let courseId = courseFromUserDefaults?.id ?? UUID().uuidString
-        let course = Course(id: courseId, title: courseName, diffScore: self.course.grossScore, gameMode: gameMode, tableValues: self.course.tableValues, holes: self.course.holes, rounds: self.course.rounds, PAR: self.course.PAR, total: self.course.total, date: Date())
+        let course = Course(id: courseId, title: courseName, diffScore: self.course.diffScore, gameMode: gameMode, tableValues: self.course.tableValues, holes: self.course.holes, rounds: self.course.rounds, PAR: self.course.PAR, total: self.course.total, date: Date())
         storageManager.saveCourseToUserDefaults(course: course, key: courseId, new: courseFromUserDefaults == nil)
     }
     
@@ -91,22 +93,20 @@ class CourseEditViewController: UIViewController, SpreadsheetViewDataSource, Spr
     }
     
     func calculateGrossScoreIfTableComplytelyFilled() {
-//        for i in (0..<course.tableValues.count) {
-//            for j in (0..<course.tableValues[i].count) {
-//                guard course.tableValues[i][j] != 0 else {
-//                    return
-//                }
-//            }
-//        }
+        for i in (0..<course.tableValues.count) {
+            for j in (0..<course.tableValues[i].count) {
+                guard course.tableValues[i][j] != 0 else {
+                    return
+                }
+            }
+        }
         
         var sum = 0
         for i in (0..<course.rounds.count) {
             sum += course.total[i]
         }
-        course.grossScore = Float(sum) / Float(course.rounds.count)
-        let handicape =  (course.grossScore - course.courseRating) * 113 / course.slopeRating
-        infoLabel.text =  "Youre current Score Differntiantial: " + String(handicape)
-        print(course.grossScore)
+        let diffScore =  ((Float(sum) / Float(course.rounds.count)) - course.courseRating) * 113 / course.slopeRating
+        course.diffScore = diffScore
     }
     
     func openAlertView(currentValue: Int) {
@@ -214,42 +214,57 @@ class MySpreadSheetCell: Cell {
 class CourseInfo {
     let holes: [String]!
     let PAR: [String]!
-    var grossScore = Float()
+    
+    //MARK: diffScore is now counting with Average gross score, but should use Adjusted gross score
+    var diffScore = Float()
+    
     var rounds = ["Round 1", "Round 2", "Round 3", "Round 4", "Round 5"]
     var tableValues = [[Int]]()
     var total = [Int]()
     let countOfTitleRows: Int = 2
     let countOfTitleCols: Int = 2
     
+    //MARK: tmp for fast fill
+    let tmpValForEachElement = 6
     //MARK: CR and SR is hardcoded now, but should be taken from database or parsed from Exel file or etc.
-    let courseRating: Float = 75.2
+    let courseRating: Float = 35.2
     let slopeRating: Float = 140
     
     init(countOfHoles: GameType) {
-        total = [Int](repeating: 0, count: rounds.count)
+        diffScore = -1.0
         switch countOfHoles {
         case .min:
             holes = ["Hole", "#1", "#2", "#3", "#4", "#5", "#6", "#7", "#8", "#9" , "Total"]
             PAR = ["PAR", "4", "4", "5", "4", "3", "4", "3" , "4", "4", "35"]
-            tableValues = [[Int]](repeating: [Int](repeating: 0, count: holes.count - countOfTitleCols), count: rounds.count)
         case .normal:
             holes = ["Hole", "#1", "#2", "#3", "#4", "#5", "#6", "#7", "#8", "#9", "#10", "#11", "#12", "#13", "#14", "#15", "#16", "#17", "#18", "Total"]
             PAR = ["PAR", "4", "4", "5", "4", "3", "4", "3" , "4", "4",
                        "3", "4", "3" , "4", "4", "4", "4", "5", "4", "70"]
-            tableValues = [[Int]](repeating: [Int](repeating: 0, count: holes.count - countOfTitleCols), count: rounds.count)
         }
+        tableValues = [[Int]](repeating: [Int](repeating: tmpValForEachElement, count: holes.count - countOfTitleCols), count: rounds.count)
+        total = [Int](repeating: tmpValForEachElement  * (holes.count - countOfTitleCols), count: rounds.count)
     }
     
-    init(holes: [String], PAR: [String], rounds: [String], tableValues: [[Int]], total: [Int]) {
+    init(holes: [String], PAR: [String], rounds: [String], tableValues: [[Int]], total: [Int], grossScore: Float) {
         self.holes = holes
         self.PAR = PAR
         self.rounds = rounds
         self.tableValues = tableValues
         self.total = total
+        self.diffScore = grossScore
     }
 }
 
 enum GameType: Codable {
     case min
     case normal
+    
+    var representedValue: String {
+        switch self {
+        case .min:
+            return "min"
+        case .normal:
+            return "normal"
+        }
+    }
 }

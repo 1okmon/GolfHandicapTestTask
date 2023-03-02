@@ -11,6 +11,8 @@ class CoursesViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     var courses = [Course]()
     var storageManager = ServiceLocator.courseStorageManager()
+    var gameType: GameType = .min
+    var infoView = UIView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +22,7 @@ class CoursesViewController: UIViewController {
         collectionView.register(nib, forCellWithReuseIdentifier: CourseCollectionViewCell.className)
         collectionView.collectionViewLayout = layout()
         addRightButtonToNavigationBar()
+        addLeftButtonToNavigationBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,9 +51,31 @@ class CoursesViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = barButton
     }
     
+    func addLeftButtonToNavigationBar() {
+        infoView.frame = CGRect.init(x: 30, y: 100, width: 200, height: 300)
+        infoView.backgroundColor = .white
+        infoView.dropShadow(radius: CGFloat(10))
+        view.addSubview(infoView)
+        
+        let icon = UIImage(systemName: "info.circle")
+        let iconSize = CGRect(origin: CGPoint.zero, size: CGSize(width: (icon?.size.width ?? 5) * 1.5 , height: (icon?.size.height ?? 5) * 1.5))
+        let iconButton = UIButton(frame: iconSize)
+        iconButton.setBackgroundImage(icon, for: .normal)
+        iconButton.addTarget(self, action: #selector(openSizePicker), for: .touchUpInside)
+        let barButton = UIBarButtonItem(customView: iconButton)
+        self.navigationItem.leftBarButtonItem = barButton
+        
+        //self.navigationItem.leftBarButtonItem = getFontSizePickerBarItem()
+    }
+    
+    @IBAction func openSizePicker(_ sender: Any) {
+        infoView.isHidden = !infoView.isHidden
+    }
+    
     @objc func createNewCourse(sender: AnyObject) {
         var enteredText = String()
-        let alert = UIAlertController(title: "Input name of course", message: "", preferredStyle: UIAlertController.Style.alert)
+        
+        let alert = UIAlertController(title: "Input name of course", message: "Course type:" + gameType.representedValue, preferredStyle: UIAlertController.Style.alert)
         alert.addTextField { (textField) in
             textField.placeholder = "Name"
         }
@@ -65,6 +90,17 @@ class CoursesViewController: UIViewController {
                 self.navigationController?.show(targetVC, sender: nil)
             }
         }))
+        
+        //MARK: will be realized
+//        alert.addAction(UIAlertAction(title: "Change course mode", style: .default, handler:{ (UIAlertAction) in
+//            switch self.gameType {
+//            case .min:
+//                self.gameType = .normal
+//            case .normal:
+//                self.gameType = .min
+//            }
+//            self.present(alert, animated: false, completion: nil)
+//        }))
         self.present(alert, animated: true, completion: nil)
     }
     
@@ -127,7 +163,13 @@ extension CoursesViewController: UICollectionViewDataSource {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CourseCollectionViewCell.className, for: indexPath) as? CourseCollectionViewCell {
             let course = courses[indexPath.row]
             cell.TitleLabel.text = course.title
-            cell.BodyLabel.text = "Diff Score: " + String(course.diffScore)
+            
+            if course.diffScore < 0 {
+                cell.BodyLabel.text = "Differential score can't be counted (please check your table)"
+            } else {
+                cell.BodyLabel.textAlignment = .center
+                cell.BodyLabel.text = "Diff Score: " + String(course.diffScore)
+            }
             let dateFormatter = DateFormatter()
                 dateFormatter.timeStyle = .medium
             cell.DateLabel.text = "\(course.date.get(.day)).\(course.date.get(.month)).\(course.date.get(.year))"
@@ -145,4 +187,18 @@ extension Date {
     func get(_ component: Calendar.Component, calendar: Calendar = Calendar.current) -> Int {
         return calendar.component(component, from: self)
     }
+}
+
+extension UIView {
+    func dropShadow(scale: Bool = true, radius: CGFloat) {
+        layer.masksToBounds = false
+        layer.cornerRadius = radius
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 0.5
+        layer.shadowOffset = CGSize(width: -1, height: 1)
+        layer.shadowRadius = radius
+        layer.shadowPath = UIBezierPath(rect: bounds).cgPath
+        layer.shouldRasterize = true
+        layer.rasterizationScale = scale ? UIScreen.main.scale : 1
+      }
 }
