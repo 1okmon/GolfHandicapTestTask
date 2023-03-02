@@ -10,7 +10,7 @@ struct Course: Codable {
     var id: String
     var title: String
     var diffScore: Float
-    var gameMode: GameType
+    var gameMode: CourseType
     var tableValues: [[Int]]
     var holes: [String]
     var rounds: [String]

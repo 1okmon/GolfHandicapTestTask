@@ -7,14 +7,14 @@
 import SpreadsheetView
 import UIKit
 
-class CourseEditViewController: UIViewController, SpreadsheetViewDataSource, SpreadsheetViewDelegate {
+class CourseEditViewController: UIViewController {
     private let spreadSheetView = SpreadsheetView()
     private var textField = UITextField()
     private var pickedElementIndexPath = IndexPath()
     let storageManager = ServiceLocator.courseStorageManager()
     var courseFromUserDefaults: Course?
     var courseName = String()
-    var gameMode: GameType = .normal
+    var gameMode: CourseType = .normal
     let infoLabel = UILabel()
     var course: CourseInfo! = nil
     
@@ -29,8 +29,6 @@ class CourseEditViewController: UIViewController, SpreadsheetViewDataSource, Spr
         setup()
         view.addSubview(spreadSheetView)
     }
-    
-    
     
     func loadCourse() {
         guard let courseFromUserDefaults = courseFromUserDefaults  else {
@@ -51,7 +49,6 @@ class CourseEditViewController: UIViewController, SpreadsheetViewDataSource, Spr
     func saveCourse() {
         let courseId = courseFromUserDefaults?.id ?? UUID().uuidString
         let course = Course(id: courseId, title: courseName, diffScore: self.course.diffScore, gameMode: gameMode, tableValues: self.course.tableValues, holes: self.course.holes, rounds: self.course.rounds, PAR: self.course.PAR, total: self.course.total, date: Date(), courseRating: course.courseRating, slopeRating: course.slopeRating)
-        print("sadadada")
         storageManager.saveCourseToUserDefaults(course: course, key: courseId, new: courseFromUserDefaults == nil)
     }
     
@@ -89,11 +86,6 @@ class CourseEditViewController: UIViewController, SpreadsheetViewDataSource, Spr
         self.present(alert, animated: true)
     }
     
-    func configurationTextField(textField: UITextField!) {
-        self.textField.placeholder = "Some text";
-        self.textField.keyboardType = .decimalPad
-    }
-    
     func calculateGrossScoreIfTableComplytelyFilled() {
         for i in (0..<course.tableValues.count) {
             for j in (0..<course.tableValues[i].count) {
@@ -102,7 +94,6 @@ class CourseEditViewController: UIViewController, SpreadsheetViewDataSource, Spr
                 }
             }
         }
-        
         var sum = 0
         for i in (0..<course.rounds.count) {
             sum += course.total[i]
@@ -112,13 +103,13 @@ class CourseEditViewController: UIViewController, SpreadsheetViewDataSource, Spr
     }
     
     func openAlertView(currentValue: Int) {
-        let alert = UIAlertController(title: "Введите количество ударов", message: "", preferredStyle: UIAlertController.Style.alert)
+        let alert = UIAlertController(title: "Input number of strokes", message: "", preferredStyle: UIAlertController.Style.alert)
         alert.addTextField { (textField) in
             textField.keyboardType = .numberPad
-            textField.placeholder = "Количество"
+            textField.placeholder = "Count"
         }
-        alert.addAction(UIAlertAction(title: "Отменить", style: .cancel, handler:nil))
-        alert.addAction(UIAlertAction(title: "Ок", style: .default, handler:{ (UIAlertAction) in
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:nil))
+        alert.addAction(UIAlertAction(title: "Confirm", style: .default, handler:{ (UIAlertAction) in
             guard let text = alert.textFields?.first?.text else {
                 return
             }
@@ -135,6 +126,9 @@ class CourseEditViewController: UIViewController, SpreadsheetViewDataSource, Spr
         self.present(alert, animated: true, completion: nil)
     }
     
+}
+    
+extension CourseEditViewController: SpreadsheetViewDataSource, SpreadsheetViewDelegate {
     func numberOfColumns(in spreadsheetView: SpreadsheetView) -> Int {
         course.holes.count
     }
@@ -178,7 +172,6 @@ class CourseEditViewController: UIViewController, SpreadsheetViewDataSource, Spr
         } else {
             var col = indexPath.section - course.countOfTitleCols + 1
             if indexPath.section <= course.holes.count - course.countOfTitleCols {
-                //print(indexPath.section)
                 let value = course.tableValues[indexPath.row - course.countOfTitleRows][col]
                 if value > 0 {
                     cell?.setup(with: String(value))
@@ -188,85 +181,5 @@ class CourseEditViewController: UIViewController, SpreadsheetViewDataSource, Spr
             }
         }
         return cell
-    }
-}
-
-class MySpreadSheetCell: Cell {
-    
-    static let identifier = "MySpreadSheetCell"
-    public let label = UILabel()
-    
-    public func setup(with text: String) {
-        label.text = text
-        label.textAlignment = .center
-        contentView.addSubview(label)
-    }
-    
-    override func prepareForReuse() -> Void {
-        label.text = nil
-        self.backgroundColor = .clear
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        label.frame = contentView.bounds
-    }
-}
-
-class CourseInfo {
-    let holes: [String]!
-    let PAR: [String]!
-    
-    //MARK: diffScore is now counting with Average gross score, but should use Adjusted gross score
-    var diffScore = Float()
-    
-    var rounds = ["Round 1", "Round 2", "Round 3", "Round 4", "Round 5"]
-    var tableValues = [[Int]]()
-    var total = [Int]()
-    let countOfTitleRows: Int = 2
-    let countOfTitleCols: Int = 2
-    
-    //MARK: tmp for fast fill
-    let tmpValForEachElement = 6
-    //MARK: CR and SR is hardcoded now, but should be taken from database or parsed from Exel file or etc.
-    let courseRating: Float = 35.2
-    let slopeRating: Float = 140
-    
-    init(countOfHoles: GameType) {
-        diffScore = -1.0
-        switch countOfHoles {
-        case .min:
-            holes = ["Hole", "#1", "#2", "#3", "#4", "#5", "#6", "#7", "#8", "#9" , "Total"]
-            PAR = ["PAR", "4", "4", "5", "4", "3", "4", "3" , "4", "4", "35"]
-        case .normal:
-            holes = ["Hole", "#1", "#2", "#3", "#4", "#5", "#6", "#7", "#8", "#9", "#10", "#11", "#12", "#13", "#14", "#15", "#16", "#17", "#18", "Total"]
-            PAR = ["PAR", "4", "4", "5", "4", "3", "4", "3" , "4", "4",
-                       "3", "4", "3" , "4", "4", "4", "4", "5", "4", "70"]
-        }
-        tableValues = [[Int]](repeating: [Int](repeating: tmpValForEachElement, count: holes.count - countOfTitleCols), count: rounds.count)
-        total = [Int](repeating: tmpValForEachElement  * (holes.count - countOfTitleCols), count: rounds.count)
-    }
-    
-    init(holes: [String], PAR: [String], rounds: [String], tableValues: [[Int]], total: [Int], grossScore: Float) {
-        self.holes = holes
-        self.PAR = PAR
-        self.rounds = rounds
-        self.tableValues = tableValues
-        self.total = total
-        self.diffScore = grossScore
-    }
-}
-
-enum GameType: Codable {
-    case min
-    case normal
-    
-    var representedValue: String {
-        switch self {
-        case .min:
-            return "min"
-        case .normal:
-            return "normal"
-        }
     }
 }

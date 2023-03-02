@@ -11,10 +11,10 @@ class CoursesViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     var courses = [Course]()
     var storageManager = ServiceLocator.courseStorageManager()
-    var gameType: GameType = .min
+    var gameType: CourseType = .min
     var infoView = UIView()
     let infoTitles = ["Average Diff Score", "Handicap",]
-    var infoValues: [Float] = [1.2, 1.7]
+    var infoValues: [Float] = [-1, -1]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,12 +47,13 @@ class CoursesViewController: UIViewController {
             if numOfCountedGrossScores == 20 {
                 break
             }
-            print(course.title)
         }
-        
-        let avgDiffScore = sumDiffScore / Float(numOfCountedGrossScores)
+        var avgDiffScore:Float = -1
+        if numOfCountedGrossScores > 0 {
+            avgDiffScore = sumDiffScore / Float(numOfCountedGrossScores)
+        }
         infoValues[0] = avgDiffScore
-        if numOfCountedGrossScores > 5 {
+        if numOfCountedGrossScores >= 5 {
             let handicapIndex = avgDiffScore * 0.96
             infoValues[1] = handicapIndex
         } else {
@@ -118,7 +119,6 @@ class CoursesViewController: UIViewController {
     
     @objc func createNewCourse(sender: AnyObject) {
         var enteredText = String()
-        
         let alert = UIAlertController(title: "Input name of course", message: "Course type:" + gameType.representedValue, preferredStyle: UIAlertController.Style.alert)
         alert.addTextField { (textField) in
             textField.placeholder = "Name"
@@ -134,7 +134,6 @@ class CoursesViewController: UIViewController {
                 self.navigationController?.show(targetVC, sender: nil)
             }
         }))
-        
         //MARK: will be realized
 //        alert.addAction(UIAlertAction(title: "Change course mode", style: .default, handler:{ (UIAlertAction) in
 //            switch self.gameType {
@@ -182,90 +181,4 @@ class CoursesViewController: UIViewController {
     func loadCourses() {
         courses = storageManager.getAllCoursesFromUserDefaults()
     }
-}
-
-extension CoursesViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let targetVC = MainNavigator.getVCFromMain(withIdentifier: CourseEditViewController.className) as? CourseEditViewController {
-            let course = courses[indexPath.row]
-            targetVC.courseFromUserDefaults = course
-            navigationController?.show(targetVC, sender: nil)
-        }
-    }
-}
-
-extension CoursesViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        courses.count
-    }
-
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CourseCollectionViewCell.className, for: indexPath) as? CourseCollectionViewCell {
-            let course = courses[indexPath.row]
-            cell.TitleLabel.text = course.title
-            
-            if course.diffScore < 0 {
-                cell.BodyLabel.text = "Differential score can't be counted (please check your table)"
-            } else {
-                cell.BodyLabel.textAlignment = .center
-                cell.BodyLabel.text = "Diff Score: " + String(course.diffScore)
-            }
-            let dateFormatter = DateFormatter()
-                dateFormatter.timeStyle = .medium
-            cell.DateLabel.text = "\(course.date.get(.day)).\(course.date.get(.month)).\(course.date.get(.year))"
-            return cell
-        }
-        return UICollectionViewCell()
-    }
-}
-
-extension Date {
-    func get(_ components: Calendar.Component..., calendar: Calendar = Calendar.current) -> DateComponents {
-        return calendar.dateComponents(Set(components), from: self)
-    }
-
-    func get(_ component: Calendar.Component, calendar: Calendar = Calendar.current) -> Int {
-        return calendar.component(component, from: self)
-    }
-}
-
-extension UIView {
-    func dropShadow(scale: Bool = true, radius: CGFloat) {
-        layer.masksToBounds = false
-        layer.cornerRadius = radius
-        layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOpacity = 0.5
-        layer.shadowOffset = CGSize(width: -1, height: 1)
-        layer.shadowRadius = radius
-        layer.shadowPath = UIBezierPath(rect: bounds).cgPath
-        layer.shouldRasterize = true
-        layer.rasterizationScale = scale ? UIScreen.main.scale : 1
-      }
-}
-
-
-extension CoursesViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: UserInfoTableViewCell.className) as? UserInfoTableViewCell else {
-            return UITableViewCell()
-        }
-        //cell.setupProperties()
-        cell.nameOfInfoLable.text = infoTitles[indexPath.row]
-        cell.infoLable.text = String(infoValues[indexPath.row])
-        cell.isUserInteractionEnabled = false
-        return cell
-    }
-    
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        1
-    }
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        infoTitles.count
-    }
-
 }

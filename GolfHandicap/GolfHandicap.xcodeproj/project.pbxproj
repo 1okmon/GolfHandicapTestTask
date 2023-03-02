@@ -17,6 +17,13 @@
 		0E7F87D129B057710005AE38 /* MainNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7F87D029B057710005AE38 /* MainNavigator.swift */; };
 		0EBC1E5929B09CC2004CF9D9 /* UserInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EBC1E5729B09CC2004CF9D9 /* UserInfoTableViewCell.xib */; };
 		0EBC1E5A29B09CC2004CF9D9 /* UserInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBC1E5829B09CC2004CF9D9 /* UserInfoTableViewCell.swift */; };
+		0EBC1E6229B09FA9004CF9D9 /* UIView+dropShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBC1E6129B09FA9004CF9D9 /* UIView+dropShadow.swift */; };
+		0EBC1E6429B09FE6004CF9D9 /* CoursesViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBC1E6329B09FE6004CF9D9 /* CoursesViewController+UITableViewDelegate.swift */; };
+		0EBC1E6629B0A065004CF9D9 /* CoursesViewController+UICollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBC1E6529B0A065004CF9D9 /* CoursesViewController+UICollectionViewDelegate.swift */; };
+		0EBC1E6829B0A11C004CF9D9 /* Date+get.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBC1E6729B0A11C004CF9D9 /* Date+get.swift */; };
+		0EBC1E6A29B0A2C9004CF9D9 /* CourseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBC1E6929B0A2C9004CF9D9 /* CourseType.swift */; };
+		0EBC1E6C29B0A2EE004CF9D9 /* CourseInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBC1E6B29B0A2EE004CF9D9 /* CourseInfo.swift */; };
+		0EBC1E6E29B0A336004CF9D9 /* MySpreadSheetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBC1E6D29B0A335004CF9D9 /* MySpreadSheetCell.swift */; };
 		0EFFC6DE29AF56D900D4731B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EFFC6DD29AF56D900D4731B /* AppDelegate.swift */; };
 		0EFFC6E029AF56D900D4731B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EFFC6DF29AF56D900D4731B /* SceneDelegate.swift */; };
 		0EFFC6E229AF56D900D4731B /* CourseEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EFFC6E129AF56D900D4731B /* CourseEditViewController.swift */; };
@@ -38,6 +45,13 @@
 		0E7F87D029B057710005AE38 /* MainNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigator.swift; sourceTree = "<group>"; };
 		0EBC1E5729B09CC2004CF9D9 /* UserInfoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfoTableViewCell.xib; sourceTree = "<group>"; };
 		0EBC1E5829B09CC2004CF9D9 /* UserInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoTableViewCell.swift; sourceTree = "<group>"; };
+		0EBC1E6129B09FA9004CF9D9 /* UIView+dropShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+dropShadow.swift"; sourceTree = "<group>"; };
+		0EBC1E6329B09FE6004CF9D9 /* CoursesViewController+UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoursesViewController+UITableViewDelegate.swift"; sourceTree = "<group>"; };
+		0EBC1E6529B0A065004CF9D9 /* CoursesViewController+UICollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoursesViewController+UICollectionViewDelegate.swift"; sourceTree = "<group>"; };
+		0EBC1E6729B0A11C004CF9D9 /* Date+get.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+get.swift"; sourceTree = "<group>"; };
+		0EBC1E6929B0A2C9004CF9D9 /* CourseType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseType.swift; sourceTree = "<group>"; };
+		0EBC1E6B29B0A2EE004CF9D9 /* CourseInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseInfo.swift; sourceTree = "<group>"; };
+		0EBC1E6D29B0A335004CF9D9 /* MySpreadSheetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySpreadSheetCell.swift; sourceTree = "<group>"; };
 		0EFFC6DA29AF56D900D4731B /* GolfHandicap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GolfHandicap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EFFC6DD29AF56D900D4731B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0EFFC6DF29AF56D900D4731B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -114,6 +128,53 @@
 			path = UserInfoTableViewCell;
 			sourceTree = "<group>";
 		};
+		0EBC1E5C29B09EE9004CF9D9 /* Additions */ = {
+			isa = PBXGroup;
+			children = (
+				0EBC1E5F29B09F06004CF9D9 /* Structures */,
+				0EBC1E5E29B09EFC004CF9D9 /* Enums */,
+				0EBC1E5D29B09EF2004CF9D9 /* Classes */,
+			);
+			path = Additions;
+			sourceTree = "<group>";
+		};
+		0EBC1E5D29B09EF2004CF9D9 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				0EBC1E6B29B0A2EE004CF9D9 /* CourseInfo.swift */,
+				0EBC1E6D29B0A335004CF9D9 /* MySpreadSheetCell.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		0EBC1E5E29B09EFC004CF9D9 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				0EBC1E6929B0A2C9004CF9D9 /* CourseType.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
+		0EBC1E5F29B09F06004CF9D9 /* Structures */ = {
+			isa = PBXGroup;
+			children = (
+				0E7F87D029B057710005AE38 /* MainNavigator.swift */,
+				0E7F87C129B051FA0005AE38 /* Course.swift */,
+			);
+			path = Structures;
+			sourceTree = "<group>";
+		};
+		0EBC1E6029B09F19004CF9D9 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0EBC1E6129B09FA9004CF9D9 /* UIView+dropShadow.swift */,
+				0EBC1E6329B09FE6004CF9D9 /* CoursesViewController+UITableViewDelegate.swift */,
+				0EBC1E6529B0A065004CF9D9 /* CoursesViewController+UICollectionViewDelegate.swift */,
+				0EBC1E6729B0A11C004CF9D9 /* Date+get.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		0EFFC6D129AF56D900D4731B = {
 			isa = PBXGroup;
 			children = (
@@ -136,6 +197,8 @@
 		0EFFC6DC29AF56D900D4731B /* GolfHandicap */ = {
 			isa = PBXGroup;
 			children = (
+				0EBC1E6029B09F19004CF9D9 /* Extensions */,
+				0EBC1E5C29B09EE9004CF9D9 /* Additions */,
 				0EBC1E5629B09CC2004CF9D9 /* UserInfoTableViewCell */,
 				0E4B936929B0876E00690D0F /* InfoTableView */,
 				0E7F87CB29B055AE0005AE38 /* CourseCollectionViewCell */,
@@ -149,8 +212,6 @@
 				0EFFC6E629AF56DB00D4731B /* Assets.xcassets */,
 				0EFFC6E829AF56DB00D4731B /* LaunchScreen.storyboard */,
 				0EFFC6EB29AF56DB00D4731B /* Info.plist */,
-				0E7F87C129B051FA0005AE38 /* Course.swift */,
-				0E7F87D029B057710005AE38 /* MainNavigator.swift */,
 			);
 			path = GolfHandicap;
 			sourceTree = "<group>";
@@ -301,16 +362,23 @@
 			files = (
 				0EBC1E5A29B09CC2004CF9D9 /* UserInfoTableViewCell.swift in Sources */,
 				0E7F87C229B051FA0005AE38 /* Course.swift in Sources */,
+				0EBC1E6829B0A11C004CF9D9 /* Date+get.swift in Sources */,
 				0EFFC6FB29AF579100D4731B /* NSObject+ClassName.swift in Sources */,
 				0E7F87D129B057710005AE38 /* MainNavigator.swift in Sources */,
+				0EBC1E6429B09FE6004CF9D9 /* CoursesViewController+UITableViewDelegate.swift in Sources */,
+				0EBC1E6E29B0A336004CF9D9 /* MySpreadSheetCell.swift in Sources */,
 				0E7F87CE29B055AE0005AE38 /* CourseCollectionViewCell.swift in Sources */,
 				0EFFC6E229AF56D900D4731B /* CourseEditViewController.swift in Sources */,
 				0E7F87C729B0531A0005AE38 /* StorageManager.swift in Sources */,
 				0E7F87C829B0531A0005AE38 /* ServiceLocator.swift in Sources */,
 				0E7F87BE29B0518C0005AE38 /* CoursesViewController.swift in Sources */,
+				0EBC1E6A29B0A2C9004CF9D9 /* CourseType.swift in Sources */,
+				0EBC1E6629B0A065004CF9D9 /* CoursesViewController+UICollectionViewDelegate.swift in Sources */,
 				0EFFC6DE29AF56D900D4731B /* AppDelegate.swift in Sources */,
 				0EFFC6E029AF56D900D4731B /* SceneDelegate.swift in Sources */,
 				0E7F87CA29B054400005AE38 /* CoursesViewController.swift in Sources */,
+				0EBC1E6C29B0A2EE004CF9D9 /* CourseInfo.swift in Sources */,
+				0EBC1E6229B09FA9004CF9D9 /* UIView+dropShadow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

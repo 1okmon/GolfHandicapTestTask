@@ -55,12 +55,10 @@ extension StorageManager: CourseStorageManager {
         let ids = defaults.stringArray(forKey: "Courses_ID") ?? [String]()
         var courses = [Course]()
         for id in ids {
-            //removeCourseFromUserDefaults(key: id)
             if let course = getCourseFromUserDefaults(key: id) {
                 courses.append(course)
             }
         }
-        print(ids)
         return courses
     }
 }
