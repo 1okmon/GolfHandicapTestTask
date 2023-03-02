@@ -20,7 +20,7 @@ class CourseInfo {
     let countOfTitleCols: Int = 2
     
     //MARK: tmp for fast fill
-    let tmpValForEachElement = 6
+    let tmpValForEachElement = 0
     //MARK: CR and SR is hardcoded now, but should be taken from database or parsed from Exel file or etc.
     let courseRating: Float = 35.2
     let slopeRating: Float = 140
